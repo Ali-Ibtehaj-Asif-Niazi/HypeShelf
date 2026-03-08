@@ -92,6 +92,7 @@ export default function HomePage() {
                 rec={rec}
                 isAdmin={false}
                 isOwner={false}
+                showAuthor={false}
               />
             ))}
           </div>
