@@ -10,6 +10,7 @@
  *   rec            — recommendation data + joined userName
  *   isAdmin        — show admin controls (Staff Pick toggle, delete any)
  *   isOwner        — show owner controls (delete own)
+ *   showAuthor     — whether to display the author name (false on public page)
  *   onDelete       — callback for delete action
  *   onToggleStaffPick — callback for staff pick toggle (admin only)
  */
@@ -32,6 +33,7 @@ interface RecommendationCardProps {
   rec: RecWithUser;
   isAdmin: boolean;
   isOwner: boolean;
+  showAuthor?: boolean;
   onDelete?: () => void;
   onToggleStaffPick?: () => void;
 }
@@ -40,6 +42,7 @@ export function RecommendationCard({
   rec,
   isAdmin,
   isOwner,
+  showAuthor = true,
   onDelete,
   onToggleStaffPick,
 }: RecommendationCardProps) {
@@ -88,9 +91,11 @@ export function RecommendationCard({
         {/* Footer row */}
         <div className="flex items-center justify-between pt-2 border-t border-gray-100 mt-auto">
           <div className="flex flex-col">
-            <span className="text-xs font-medium text-gray-700">
-              {rec.userName}
-            </span>
+            {showAuthor && (
+              <span className="text-xs font-medium text-gray-700">
+                {rec.userName}
+              </span>
+            )}
             <span className="text-xs text-gray-400">{formattedDate}</span>
           </div>
 
